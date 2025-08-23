@@ -48,19 +48,12 @@ body {
 }
 
 .logo-text {
-    font-size: 24px;
+    font-size: 15px;
     font-weight: 700;
-    color: #0e3fa1;
+    color: #031f55;
     letter-spacing: 2px;
 }
 
-.logo-subtext {
-    font-size: 10px;
-    font-weight: 500;
-    color: #3e6ae1;
-    letter-spacing: 1px;
-    margin-top: -2px;
-}
 
 .nav-menu {
     display: none;
