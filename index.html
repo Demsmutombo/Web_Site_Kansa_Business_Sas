@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kansa Business Sas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="kansa-logo">
+                    <span class="logo-text">KANSA BUSINESS SAS</span>
+                    <span class=""></span> 
+                </div>
+            </div>
+            
+            
+            <nav class="nav-menu">
+                <ul class="nav-links">
+                    <div class="dropdown">
+                        <a href="#services">Services</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-item">
+                                    <img src="img/carosels/logiciel.jpg" alt="Développement Logiciel">
+                                    <div class="dropdown-info">
+                                        <h4>Développement Logiciel</h4>
+                                        <p>Applications web, mobiles et desktop</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="img/carosels/rx.jpg" alt="Réseaux Informatiques">
+                                    <div class="dropdown-info">
+                                        <h4>Réseaux Informatiques</h4>
+                                        <p>Installation LAN, MAN, WAN</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="img/carosels/equpem.jpg" alt="Équipements IT">
+                                    <div class="dropdown-info">
+                                        <h4>Équipements IT</h4>
+                                        <p>Fourniture et déploiement</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="img/carosels/logi.jpg" alt="Services Logistiques">
+                                    <div class="dropdown-info">
+                                        <h4>Services Logistiques</h4>
+                                        <p>Gestion et installation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#realisations">Réalisations</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-item">
+                                    <img src="img/logos/kelasi.jpg" alt="Kelasi na Biso">
+                                    <div class="dropdown-info">
+                                        <h4>Kelasi na Biso</h4>
+                                        <p>Plateforme de gestion scolaire</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=200&fit=crop" alt="Congo Hôtel">
+                                    <div class="dropdown-info">
+                                        <h4>Congo Hôtel</h4>
+                                        <p>Plateforme de réservation</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="img/logos/k_archi.jpg" alt="K-Archive Pro">
+                                    <div class="dropdown-info">
+                                        <h4>K-Archive Pro</h4>
+                                        <p>Solution d'archivage numérique</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=200&fit=crop" alt="Mpako">
+                                    <div class="dropdown-info">
+                                        <h4>Ndaku</h4>
+                                        <p>Éducation financière</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#about">À Propos</a>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <a href="blog.html" class="nav-btn">Blog</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu mobile">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#realisations">Réalisations</a></li>
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <!-- Slide 1 - Kansa Business Hero -->
+            <div class="carousel-slide active" data-slide="0">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Kansa Business</h1>
+                        <p>Nous connectons l'Afrique au futur numérique</p>
+                        <p class="hero-subtitle">Solutions numériques innovantes pour l'Afrique</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="scrollToSection('services')">Découvrir nos solutions</button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('realisations')">Voir nos réalisations</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/carosels/busn.jpg" alt="Équipe Kansa Business" class="hero-bg-image">
+                </div>
+            </div>
+
+            <!-- Slide 2 - Nos Réalisations -->
+            <div class="carousel-slide" data-slide="1">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Nos Réalisations</h1>
+                        <p>15+ plateformes développées</p>
+                        <p class="hero-subtitle">Des solutions qui transforment l'éducation et les services</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="scrollToSection('realisations')">Voir nos produits</button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('contact')">Nous contacter</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/carosels/logiciel.jpg" alt="Développement logiciel" class="hero-bg-image">
+                </div>
+            </div>
+
+            <!-- Slide 3 - Innovation & Valeurs -->
+            <div class="carousel-slide" data-slide="2">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Innovation & Excellence</h1>
+                        <p>4 domaines d'expertise</p>
+                        <p class="hero-subtitle">Fiabilité, Accessibilité et Impact Social</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="scrollToSection('values')">Nos valeurs</button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('about')">À propos</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/carosels/innov.jpg" alt="Innovation technologique" class="hero-bg-image">
+                </div>
+            </div>
+
+            <!-- Slide 4 - Services IT -->
+            <div class="carousel-slide" data-slide="3">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Services IT Complets</h1>
+                        <p>Réseaux • Équipements • Formation</p>
+                        <p class="hero-subtitle">Infrastructure technologique moderne pour l'Afrique</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="scrollToSection('services')">Nos services</button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('contact')">Nous contacter</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/carosels/rx.jpg" alt="Infrastructure IT" class="hero-bg-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+            <button class="carousel-dot active" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
+            <button class="carousel-dot" data-slide="3"></button>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-next" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <button class="indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="carousel-progress">
+            <div class="progress-bar"></div>
+        </div>
+    </section>
+
+    <!-- About Kansa Business Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>À propos de Kansa Business</h2>
+                    <p class="about-lead">Faire du numérique un levier de développement durable en Afrique.</p>
+                    <p>
+                        Kansa Business est une startup congolaise innovante, spécialisée dans le développement de solutions numériques, 
+                        incluant les logiciels informatiques, l'installation de réseaux et la fourniture d'équipements. 
+                        Nous accompagnons les entreprises, les établissements éducatifs et autres institutions 
+                        dans leur transformation digitale pour assurer leur réussite.
+                    </p>
+                </div>
+                
+                <div class="about-image" data-aos="fade-left">
+                    <img src="img/logos/kansa.jpg" alt="Équipe Kansa Business">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Services Section -->
+    <section class="products-section" id="services">
+        <div class="container">
+            <!-- Stats Section -->
+            <div class="stats-section" data-aos="fade-up">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Utilisateurs satisfaits</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Domaines d'expertise</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Plateformes développées</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Établissements partenaires</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nos Services</h2>
+                <p>Solutions numériques complètes pour votre transformation digitale</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Développement Logiciel</h3>
+                    </div>
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h4>Applications Web</h4>
+                            <p>Solutions web modernes et responsives</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Applications Mobiles</h4>
+                            <p>iOS et Android natifs ou hybrides</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Applications Desktop</h4>
+                            <p>Logiciels de gestion personnalisés</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>API & Intégrations</h4>
+                            <p>Connexion de systèmes existants</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Réseaux Informatiques</h3>
+                    </div>
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h4>Installation LAN</h4>
+                            <p>Réseaux locaux pour entreprises</p>
+                            <span class="price">À partir de 500$</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Réseaux MAN/WAN</h4>
+                            <p>Connexions étendues multi-sites</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>WiFi Professionnel</h4>
+                            <p>Solutions sans fil haute performance</p>
+                            <span class="price">À partir de 300$</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Sécurité Réseau</h4>
+                            <p>Firewall et protection avancée</p>
+                            <span class="price">Sur devis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-header">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Équipements IT</h3>
+                    </div>
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h4>Ordinateurs & Serveurs</h4>
+                            <p>Matériel professionnel de qualité</p>
+                            <span class="price">Catalogue disponible</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Périphériques</h4>
+                            <p>Imprimantes, scanners, accessoires</p>
+                            <span class="price">Prix compétitifs</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Installation & Configuration</h4>
+                            <p>Mise en service complète</p>
+                            <span class="price">Inclus</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Maintenance</h4>
+                            <p>Support technique et réparations</p>
+                            <span class="price">Contrats disponibles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="category-header">
+                        <i class="fas fa-truck"></i>
+                        <h3>Services Logistiques</h3>
+                    </div>
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h4>Gestion de Stock</h4>
+                            <p>Entreposage et inventaire</p>
+                            <span class="price">Service inclus</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Livraison</h4>
+                            <p>Transport sécurisé sur site</p>
+                            <span class="price">Kinshasa et provinces</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Installation sur Site</h4>
+                            <p>Déploiement complet</p>
+                            <span class="price">Équipe spécialisée</span>
+                        </div>
+                        <div class="product-item">
+                            <h4>Formation</h4>
+                            <p>Formation des utilisateurs</p>
+                            <span class="price">Incluse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs Section -->
+    <section class="team-section" id="valeurs">
+        <div class="container">
+            <div class="team-header">
+                <h2>Nos Valeurs</h2>
+                <p>Les principes qui guident notre mission de transformation numérique en Afrique</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-image">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Innovation</h3>
+                        <p class="member-title">Créativité & Excellence Technique</p>
+                        <p class="member-bio">Nous développons des solutions créatives et avant-gardistes, adaptées aux défis spécifiques du continent africain avec les dernières technologies.</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-image">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Fiabilité</h3>
+                        <p class="member-title">Qualité & Engagement</p>
+                        <p class="member-bio">Nos solutions sont robustes, sécurisées et maintenues avec le plus haut niveau de professionnalisme pour garantir la satisfaction client.</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-image">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Accessibilité</h3>
+                        <p class="member-title">Solutions Abordables</p>
+                        <p class="member-bio">Nous rendons la technologie accessible à tous avec des prix adaptés au marché local et des solutions de financement flexibles.</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member-image">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Impact Social</h3>
+                        <p class="member-title">Développement Durable</p>
+                        <p class="member-bio">Chaque projet contribue au développement socio-économique local en créant des emplois et en renforçant les capacités numériques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Réalisations Section -->
+    <section class="innovation-section" id="realisations">
+        <div class="container">
+            <div class="innovation-header" data-aos="fade-up">
+                <h2>Nos Réalisations</h2>
+                <p>Découvrez nos solutions phares qui transforment l'Afrique</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <!-- Kelasi na Biso -->
+                <div class="innovation-item" data-aos="zoom-in" data-aos-delay="100" onclick="openModal('kelasi')">
+                    <div class="innovation-icon">
+                        <img src="img/logos/kelasi.jpg" alt="Kelasi na Biso">
+                    </div>
+                    <h3>Kelasi na Biso</h3>
+                    <p>Plateforme complète pour la gestion et la communication des établissements éducatifs.</p>
+                </div>
+    
+                <!-- Congo Hôtel -->
+                <div class="innovation-item" data-aos="zoom-in" data-aos-delay="200" onclick="openModal('congoHotel')">
+                    <div class="innovation-icon">
+                        <img src="img/logos/mabota.jpg" alt="Congo Hôtel">
+                    </div>
+                    <h3>Congo Hôtel</h3>
+                    <p>Solution intuitive pour gérer tous les services hôteliers et optimiser l’expérience client.</p>
+                </div>
+    
+                <!-- K-Archive Pro -->
+                <div class="innovation-item" data-aos="zoom-in" data-aos-delay="300" onclick="openModal('kArchive')">
+                    <div class="innovation-icon">
+                        <img src="img/logos/k_archi.jpg" alt="K-Archive Pro">
+                    </div>
+                    <h3>K-Archive Pro</h3>
+                    <p>Plateforme sécurisée pour archiver et gérer tous vos documents professionnels.</p>
+                </div>
+    
+                <!-- Ndaku -->
+                <div class="innovation-item" data-aos="zoom-in" data-aos-delay="400" onclick="openModal('ndaku')">
+                    <div class="innovation-icon">
+                        <img src="img/logos/ndaku.jpg" alt="Ndaku">
+                    </div>
+                    <h3>Ndaku</h3>
+                    <p>Application numérique pour la gestion des biens immobiliers, ventes et locations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="" style="width:100%; border-radius:8px; margin-bottom:15px;">
+            <h3 id="modal-title"></h3>
+            <p id="modal-body"></p>
+        </div>
+    </div>
+    
+
+    <!-- Team Leaders Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="team-header">
+                <h2>Notre Équipe</h2>
+                <p>Les leaders qui dirigent la transformation numérique de Kansa Business</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-image">
+                        <img src="img/teams/bpk.jpg" alt="Billy Paul Kalambayi">
+                        <div class="member-overlay">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h2>Billy Paul Kalambayi</h2>
+                        <p class="member-title">Directeur Général</p>
+                        <p class="member-bio">Visionnaire en logistique, passionné par la transformation digitale et l’innovation en Afrique</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-image">
+                        <img src="img/teams/miriam.jpg" alt="Miriam Kanjinga">
+                        <div class="member-overlay">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Miriam Kanjinga</h3>
+                        <p class="member-title">Diretrice de Resource Humaine</p>
+                        <p class="member-bio">Visionnaire en ressources humaines, passionné par la transformation digitale et le développement du capital humain..</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-image">
+                        <img src="img/teams/jean.jpg" alt="Jean Kisangi">
+                        <div class="member-overlay">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Jean Kisangi</h3>
+                        <p class="member-title">Directeur Technique</p>
+                        <p class="member-bio">Visionnaire en réseaux et systèmes informatiques, passionné par l’innovation technologique et la transformation digitale.</p>
+                    </div>
+                </div>
+
+                <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member-image">
+                        <img src="img/teams/djo.jpg" alt="Jonathan Kalambayi">
+                        <div class="member-overlay">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Jonathan Kalambayi</h3>
+                        <p class="member-title">Directeur de Recherche et Innovation</p>
+                        <p class="member-bio">Visionnaire en conception et développement informatique, passionné par l’innovation technologique et la transformation digitale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Ajoute Font Awesome dans le <head> si pas déjà inclus -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<footer class="footer" id="contact">
+    <div class="footer-content">
+        <div class="footer-links">
+            <!-- Services -->
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#developpement">Développement Logiciel</a></li>
+                    <li><a href="#reseaux">Réseaux Informatiques</a></li>
+                    <li><a href="#equipements">Équipements IT</a></li>
+                    <li><a href="#logistique">Services Logistiques</a></li>
+                    <li><a href="#formation">Formation</a></li>
+                    <li><a href="#maintenance">Maintenance</a></li>
+                </ul>
+            </div>
+
+            <!-- Réalisations -->
+            <div class="footer-column">
+                <h4>Réalisations</h4>
+                <ul>
+                    <li><a href="#kelasi">Kelasi na Biso</a></li>
+                    <li><a href="#congo-hotel">Congo Hôtel</a></li>
+                    <li><a href="#k-archive">K-Archive Pro</a></li>
+                    <li><a href="#mpako">Mpako</a></li>
+                    <li><a href="#portfolio">Portfolio Complet</a></li>
+                    <li><a href="#demos">Démos</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#support">Support Client</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#tutoriels">Tutoriels</a></li>
+                    <li><a href="#assistance">Assistance Technique</a></li>
+                    <li><a href="#garantie">Garantie</a></li>
+                </ul>
+            </div>
+
+            <!-- Entreprise -->
+            <div class="footer-column">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#equipe">Notre Équipe</a></li>
+                    <li><a href="#carrieres">Carrières</a></li>
+                    <li><a href="#partenaires">Partenaires</a></li>
+                    <li><a href="#actualites">Actualités</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact modernisé -->
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul class="contact-list">
+                    <li>
+                        <a href="https://wa.me/243896558249?text=Bonjour%20Kansa%20Business%2C%20j'aimerais%20avoir%20plus%20d'informations." 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> +243 89 65 58 249
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/243846656910?text=Bonjour%20Kansa%20Business%2C%20j'aimerais%20avoir%20plus%20d'informations." 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> +243 84 66 56 910
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/243812726582?text=Bonjour%20Kansa%20Business%2C%20j'aimerais%20avoir%20plus%20d'informations." 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i> +243 81 27 26 582
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:contact@kansaconsulting.com">
+                            <i class="fas fa-envelope"></i> contact@kansaconsulting.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://maps.google.com/?q=Kinshasa,RDC" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> Kinshasa, RDC
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bas de page -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Kansa Business. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
