@@ -1,38 +1,102 @@
-// Tesla Website Clone - Interactive JavaScript
+// Kansa Business Website - Interactive JavaScript
+
+// Loading Screen Management
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+}
+
+// Show loading screen for minimum time
+window.addEventListener('load', function() {
+    // Minimum loading time of 2 seconds
+    setTimeout(hideLoadingScreen, 2000);
+});
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS animations
-    AOS.init({
-        duration: 800,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 100
-    });
-    // Mobile menu functionality
+    // Initialize AOS animations with mobile optimization
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            disable: window.innerWidth < 768 // Disable on mobile for better performance
+        });
+    }
+    
+    // Mobile menu functionality with improved stability
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const navbar = document.querySelector('.navbar');
     
-    // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function() {
-        mobileMenuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
+    if (mobileMenuToggle && mobileMenu) {
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+        
+        // Close mobile menu when clicking on links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+    }
     
-    // Close mobile menu when clicking on links
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+    function openMobileMenu() {
+        if (mobileMenu && mobileMenuToggle) {
+            mobileMenuToggle.classList.add('active');
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (mobileMenu && mobileMenuToggle) {
             mobileMenuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
-        });
-    });
+            document.body.style.position = '';
+            document.body.style.width = '';
+        }
+    }
     
-    // Navbar scroll effect
+    // Navbar scroll effect with throttling for better performance
     let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
+    let ticking = false;
+    
+    function updateNavbar() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > lastScrollTop && scrollTop > 100) {
@@ -47,15 +111,27 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollTop > 50) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             navbar.style.backdropFilter = 'blur(20px)';
+            navbar.style.webkitBackdropFilter = 'blur(20px)';
         } else {
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
+            navbar.style.webkitBackdropFilter = 'blur(10px)';
         }
         
         lastScrollTop = scrollTop;
-    });
+        ticking = false;
+    }
     
-    // Smooth scrolling for anchor links
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // Smooth scrolling for anchor links with mobile optimization
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -64,137 +140,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 56; // Account for navbar height
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+                const offsetTop = targetSection.offsetTop - 80; // Account for navbar height
+                
+                // Use smooth scroll on desktop, instant on mobile for better performance
+                if (window.innerWidth >= 768) {
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'auto'
+                    });
+                }
             }
         });
     });
     
-    // Intersection Observer for section animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all hero sections
-    const heroSections = document.querySelectorAll('.hero-section');
-    heroSections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(section);
-    });
-    
-    // Button hover effects
+    // Button hover effects with touch device detection
     const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
-        });
-    });
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
-    // Parallax effect for hero backgrounds
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.car-placeholder');
-        
-        parallaxElements.forEach((element, index) => {
-            const speed = 0.5;
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
+    if (!isTouchDevice) {
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
         });
-    });
-    
-    // Dynamic text animation
-    function animateText(element, text, delay = 50) {
-        element.textContent = '';
-        element.style.opacity = '1';
-        
-        for (let i = 0; i < text.length; i++) {
-            setTimeout(() => {
-                element.textContent += text[i];
-            }, delay * i);
-        }
     }
     
-    // Animate hero titles when they come into view
-    const heroTitles = document.querySelectorAll('.hero-text h1');
-    const titleObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const originalText = entry.target.textContent;
-                animateText(entry.target, originalText, 100);
-                titleObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    heroTitles.forEach(title => {
-        titleObserver.observe(title);
-    });
-    
-    // Keyboard navigation support
-    document.addEventListener('keydown', function(e) {
-        // ESC key closes mobile menu
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            mobileMenuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Arrow keys for section navigation
-        if (e.key === 'ArrowDown' && e.ctrlKey) {
-            e.preventDefault();
-            scrollToNextSection();
-        } else if (e.key === 'ArrowUp' && e.ctrlKey) {
-            e.preventDefault();
-            scrollToPrevSection();
-        }
-    });
-    
-    function scrollToNextSection() {
-        const currentScroll = window.pageYOffset;
-        const sections = document.querySelectorAll('.hero-section');
-        
-        for (let section of sections) {
-            if (section.offsetTop > currentScroll + 100) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                break;
-            }
-        }
-    }
-    
-    function scrollToPrevSection() {
-        const currentScroll = window.pageYOffset;
-        const sections = Array.from(document.querySelectorAll('.hero-section')).reverse();
-        
-        for (let section of sections) {
-            if (section.offsetTop < currentScroll - 100) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                break;
-            }
-        }
-    }
-    
-    // Carousel functionality
+    // Carousel functionality with mobile optimization
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dot');
@@ -203,17 +185,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalSlides = slides.length;
     let autoSlideInterval;
     const slideDelay = 6000; // 6 seconds per slide
+    let isAutoPlaying = true;
 
     function showSlide(index) {
+        if (index < 0 || index >= totalSlides) return;
+        
         // Remove active class from all slides and dots
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
         
         // Add active class to current slide and dot
         slides[index].classList.add('active');
-        dots[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
         
         currentSlide = index;
+        
+        // Update progress bar
+        updateProgressBar();
     }
 
     function nextSlide() {
@@ -227,128 +215,149 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, slideDelay);
+        if (isAutoPlaying && !autoSlideInterval) {
+            autoSlideInterval = setInterval(nextSlide, slideDelay);
+        }
     }
 
     function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
     }
-
-    // Event listeners
-    nextBtn.addEventListener('click', () => {
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        stopAutoSlide();
-        prevSlide();
-        startAutoSlide();
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopAutoSlide();
-            showSlide(index);
-            startAutoSlide();
-        });
-    });
-
-    // Pause on hover
-    const carousel = document.querySelector('.hero-carousel');
-    carousel.addEventListener('mouseenter', stopAutoSlide);
-    carousel.addEventListener('mouseleave', startAutoSlide);
-
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipeGesture();
-    });
-
-    function handleSwipeGesture() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            stopAutoSlide();
-            if (diff > 0) {
-                nextSlide(); // Swipe left - next slide
-            } else {
-                prevSlide(); // Swipe right - previous slide
-            }
-            startAutoSlide();
+    
+    function updateProgressBar() {
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
         }
     }
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
-        } else if (e.key === 'ArrowRight') {
+    // Event listeners for carousel controls
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
             stopAutoSlide();
             nextSlide();
             startAutoSlide();
-        }
-    });
-
-    // Initialize carousel if slides exist
-    if (slides.length > 0) {
-        startAutoSlide();
+        });
     }
 
-    // Loading animation
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-        
-        // Animate first slide immediately
-        const firstSlide = document.querySelector('.carousel-slide.active');
-        if (firstSlide) {
-            setTimeout(() => {
-                firstSlide.style.opacity = '1';
-                firstSlide.style.transform = 'translateY(0)';
-            }, 300);
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+    }
+
+    if (dots.length > 0) {
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+    }
+
+    // Pause on hover (desktop only)
+    if (!isTouchDevice) {
+        const carousel = document.querySelector('.hero-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
         }
-    });
-    
-    // Touch gestures for mobile
+    }
+
+    // Touch/swipe support for mobile with improved stability
+    let touchStartX = 0;
     let touchStartY = 0;
+    let touchEndX = 0;
     let touchEndY = 0;
-    
-    document.addEventListener('touchstart', function(e) {
+    let isSwiping = false;
+
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
-    });
-    
-    document.addEventListener('touchend', function(e) {
-        touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartY - touchEndY;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe up - next section
-                scrollToNextSection();
-            } else {
-                // Swipe down - previous section
-                scrollToPrevSection();
+        isSwiping = false;
+    }
+
+    function handleTouchMove(e) {
+        if (!isSwiping) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            
+            const diffX = Math.abs(touchStartX - touchEndX);
+            const diffY = Math.abs(touchStartY - touchEndY);
+            
+            // Only start swiping if horizontal movement is greater than vertical
+            if (diffX > diffY && diffX > 10) {
+                isSwiping = true;
             }
         }
     }
+
+    function handleTouchEnd(e) {
+        if (isSwiping) {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                stopAutoSlide();
+                if (diff > 0) {
+                    nextSlide(); // Swipe left - next slide
+                } else {
+                    prevSlide(); // Swipe right - previous slide
+                }
+                startAutoSlide();
+            }
+        }
+        
+        isSwiping = false;
+    }
+
+    // Add touch event listeners to carousel
+    const carousel = document.querySelector('.hero-carousel');
+    if (carousel && isTouchDevice) {
+        carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+        carousel.addEventListener('touchmove', handleTouchMove, { passive: true });
+        carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+
+    // Keyboard navigation with mobile consideration
+    if (!isTouchDevice) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            } else if (e.key === 'ArrowRight') {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            }
+        });
+    }
+
+    // Start auto-slide
+    if (totalSlides > 1) {
+        startAutoSlide();
+        
+        // Pause auto-slide when page is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoSlide();
+            } else {
+                startAutoSlide();
+            }
+        });
+    }
     
-    // Performance optimization: Throttle scroll events
+    // Utility function for throttling
     function throttle(func, limit) {
         let inThrottle;
         return function() {
@@ -362,17 +371,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Apply throttling to scroll events
+    // Apply throttling to scroll events for better performance
     const throttledScrollHandler = throttle(function() {
         // Scroll-based animations can be added here
     }, 16); // ~60fps
     
-    window.addEventListener('scroll', throttledScrollHandler);
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
     
-    // Preload images for better performance
+    // Preload critical images for better performance
     function preloadImages() {
         const imageUrls = [
-            // Add actual Tesla car images here when available
+            'img/carosels/busn.jpg',
+            'img/carosels/logiciel.jpg',
+            'img/carosels/rx.jpg',
+            'img/carosels/equpem.jpg',
+            'img/carosels/logi.jpg',
+            'img/carosels/innov.jpg'
         ];
         
         imageUrls.forEach(url => {
@@ -381,27 +395,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    preloadImages();
+    // Only preload images on desktop for better mobile performance
+    if (!isTouchDevice) {
+        preloadImages();
+    }
+    
+    // Initialize first slide
+    if (slides.length > 0) {
+        showSlide(0);
+    }
 });
 
-// Scroll to section function
+// Scroll to section function with mobile optimization
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
         const offsetTop = section.offsetTop - 80; // Account for navbar
-        window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-        });
+        
+        // Use smooth scroll on desktop, instant on mobile
+        if (window.innerWidth >= 768) {
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        } else {
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'auto'
+            });
+        }
     }
 }
 
-
+// Modal functionality
 function openModal(app) {
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modal-image');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
+
+    if (!modal || !modalImage || !modalTitle || !modalBody) return;
 
     switch(app) {
         case 'kelasi':
@@ -431,7 +464,7 @@ function openModal(app) {
 - Archivage organisé par catégorie ou projet
 - Accès contrôlé pour le personnel autorisé
 - Traçabilité complète des consultations et modifications
-- Réduction des risques de perte et optimisation de l’espace de stockage.`;
+- Réduction des risques de perte et optimisation de l'espace de stockage.`;
             break;
         case 'ndaku':
             modalImage.src = 'img/logos/ndaku.jpg';
@@ -446,8 +479,25 @@ function openModal(app) {
     }
 
     modal.style.display = "block";
+    
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
 }
 
 function closeModal() {
-    document.getElementById('modal').style.display = "none";
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
